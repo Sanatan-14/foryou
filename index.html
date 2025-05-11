@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Love ❤️</title>
+    <style>
+        :root {
+            --primary: #ff6b8b;
+            --secondary: #ff8fab;
+            --dark: #5a3d5c;
+            --light: #fff0f5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            font-style: italic;
+            color: var(--dark);
+            opacity: 0.8;
+        }
+        
+        .main-content {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .action-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+        
+        .action-card h2 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            transform: scale(1.05);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--light);
+        }
+        
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0;
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .hidden-message {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            text-align: left;
+            margin-top: 1rem;
+        }
+        
+        .show-message {
+            max-height: 500px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 1rem;
+            color: var(--dark);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(20deg); opacity: 0; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>For My Lovely Hiruu🌺🥰</h1>
+            <p class="subtitle">A special place just for us...</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="action-card" id="song-card">
+                <h2>The Song that connected Us</h2>
+                <p>Click below to listen to our song</p>
+                <a href="https://youtu.be/U2SVCCENLjE?si=S5kANjBO8gtVscBD" target="_blank" class="btn pulse">
+                    🎵 Play Our Song
+                </a>
+            </div>
+            
+            <div class="action-card" id="call-card">
+                <h2>Call Your Love</h2>
+                <p>Whenever you need to hear my voice</p>
+                <a href="tel:+918208956658" class="btn btn-secondary">
+                    📞 Call Me Now
+                </a>
+            </div>
+            
+            <div class="action-card" id="secret-card" onclick="toggleMessage()">
+                <h2>Secret Message just for you🤭</h2>
+                <p>Click to reveal a special note</p>
+                <div class="hidden-message" id="secret-message">
+                    <p>My dearest Lovliest Hiruu,</p>
+                    <p>No matter where you are or what you're feeling, remember that you're the most amazing person I know.</p>
+                    <p>I love you more than words can express.</p>
+                    <p>Forever yours,</p>
+                    <p>Aapka Gadheru</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        Made with love ❤️
+    </footer>
+    
+    <script>
+        // Create floating hearts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create hearts when clicking anywhere
+            document.body.addEventListener('click', function(e) {
+                createHeart(e.clientX, e.clientY);
+            });
+            
+            // Pre-create some floating hearts
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    createHeart(
+                        Math.random() * window.innerWidth,
+                        window.innerHeight + 50
+                    );
+                }, i * 800);
+            }
+        });
+        
+        function createHeart(x, y) {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.className = 'heart';
+            heart.style.left = `${x}px`;
+            heart.style.top = `${y}px`;
+            heart.style.fontSize = `${Math.random() * 20 + 10}px`;
+            heart.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            document.body.appendChild(heart);
+            
+            // Remove heart after animation
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+        
+        function toggleMessage() {
+            const message = document.getElementById('secret-message');
+            message.classList.toggle('show-message');
+        }
+        
+        // Make the song card pulse occasionally
+        setInterval(() => {
+            const card = document.getElementById('song-card');
+            card.classList.add('pulse');
+            setTimeout(() => {
+                card.classList.remove('pulse');
+            }, 2000);
+        }, 8000);
+    </script>
+</body>
+</html>
